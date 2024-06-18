@@ -16,7 +16,7 @@ public class Config {
         Constructor constructor = new Constructor(ConfigProperties.class, loaderOptions);
         Yaml yaml = new Yaml(constructor);
 
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("application.yaml")) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("app.yaml")) {
             if (inputStream == null) {
                 throw new IllegalArgumentException("application.yaml not found in the classpath");
             }
@@ -39,7 +39,7 @@ public class Config {
 
     private String decryptPassword(String encryptedPassword) {
         AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
-        textEncryptor.setPassword("encryptionKey"); // Replace with your encryption key
+        textEncryptor.setPassword("encryptionKey");
         return textEncryptor.decrypt(encryptedPassword);
     }
 
